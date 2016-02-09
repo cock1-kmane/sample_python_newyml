@@ -9,6 +9,9 @@ env:
 
   matrix:
     - M1=ONE
+branches:
+ except:
+   - master
 
 build:
   pre_ci:
