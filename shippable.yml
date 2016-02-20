@@ -30,7 +30,7 @@ build:
   ci:
     - ps -eax
     - ls -al
-    - psql -c 'create database test;' -U postgres
+   # - psql -c 'create database test;' -U postgres
    # - mysql -e 'create database if not exists test;'
 
   #post_ci:
