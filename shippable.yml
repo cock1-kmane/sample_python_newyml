@@ -2,7 +2,10 @@ language: python
 
 python:
   - 3.4
-
+  - 3.5
+  - 2.6
+  - 2.7
+  - pypy3
 
 env:
   global:
@@ -11,15 +14,14 @@ env:
   matrix:
     - M1=ONE
 
-
 build:
-  pre_ci:
-    - docker build -t=shippabledocker/hitchcock2_sample_python .
+  #pre_ci:
+   # - docker build -t=shippabledocker/shiphitchcock1_sample_python .
 
   pre_ci_boot:
-    image_name: shippabledocker/hitchcock2_sample_python
+    image_name: shippable/minv2
     image_tag: latest
-    pull: false
+    pull: true
     options: '--privileged=true --net=bridge -e FOO=true -e BOO=false'
 
   ci:
@@ -27,13 +29,9 @@ build:
     - ls -al
 
   post_ci:
-    - docker push shippabledocker/hitchcock2_sample_python
-
+    - docker push shippabledocker/shiphitchcock1_sample_python
 
 integrations:
   hub:
     - integrationName: ship-docker
       type: docker
-      branches:
-        only:
-          - master
