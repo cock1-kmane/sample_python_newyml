@@ -35,7 +35,7 @@ build:
     - mkdir -p shippable/codecoverage
     - mysql -e 'create database test;'
     - /etc/init.d/xvfb start 
-    - python manage.py test
+    - python test.py test
     - /etc/init.d/xvfb stop
 
   #post_ci:
