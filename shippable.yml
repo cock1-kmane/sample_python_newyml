@@ -34,7 +34,7 @@ build:
     - if [[ $VIRTUALENV_PYTHON == '3.2' ]]; then pip install coverage==3.7.1 codecov ; fi
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
-    - python initialize.py
+    - python test.py
     - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
     - which python && coverage run --branch test.py
     - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
