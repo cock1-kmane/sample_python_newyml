@@ -30,7 +30,10 @@ build:
   ci:
     - ps -eax
     - ls -al
+    - pip install -r requirements.txt
     - psql -c 'create database test;' -U postgres
+    - mkdir -p shippable/testresults
+    - mkdir -p shippable/codecoverage
    # - mysql -e 'create database if not exists test;'
     - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
     - which python && coverage run --branch test.py
