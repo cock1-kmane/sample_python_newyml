@@ -4,11 +4,11 @@ python:
   - 3.4
   #- 3.5
   #- 2.6
-  - 2.7
+  - 3.2
   #- pypy3
   
 services:
-  - elasticsearch
+  - neo4j
 
 env:
   global:
