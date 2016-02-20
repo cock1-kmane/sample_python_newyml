@@ -13,6 +13,7 @@ services:
 env:
   global:
     - FOO=FUBU
+    - APP_NAME=python-test-20feb
 
   matrix:
     - M1=ONE
@@ -36,6 +37,7 @@ build:
     - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
     - which python && coverage run --branch test.py
     - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
+    - git push -f git@heroku.com:$APP_NAME.git master
    # - psql -c 'create database test;' -U postgres
    # - mysql -e 'create database if not exists test;'
 
