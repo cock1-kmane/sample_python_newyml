@@ -33,6 +33,8 @@ build:
     - ps -eax
     - ls -al
     - which heroku || wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+    - . $HOME/.rvm/scripts/rvm && rvm use ruby-2.0.0-p598 --default && ruby --version
+
     - pip install -r requirements.txt
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
