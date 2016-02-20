@@ -8,7 +8,7 @@ python:
   #- pypy3
   
 services:
-  - memcache
+  - mysql
 
 env:
   global:
@@ -30,6 +30,7 @@ build:
   ci:
     - ps -eax
     - ls -al
+    - mysql -e 'create database if not exists test;'
 
   #post_ci:
    # - docker build -t=shippabledocker/shiphitchcock1_sample_python:latest .
