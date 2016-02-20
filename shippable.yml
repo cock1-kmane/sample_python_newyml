@@ -37,7 +37,10 @@ build:
     - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
     - which python && coverage run --branch test.py
     - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
-    - git push -f git@heroku.com:$APP_NAME.git master
+    - which heroku || wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+    - test -f ~/.ssh/id_rsa.heroku || ssh-keygen -y -f ~/.ssh/id_rsa > ~/.ssh/id_rsa.heroku && heroku keys:add ~/.ssh/id_rsa.heroku
+    - git remote -v | grep ^heroku || heroku git:remote --ssh-git --app $APP_NAME
+    - git push -f heroku $BRANCH:master
    # - psql -c 'create database test;' -U postgres
    # - mysql -e 'create database if not exists test;'
 
