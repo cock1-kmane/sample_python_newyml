@@ -13,9 +13,7 @@ services:
 env:
   global:
     - FOO=FUBU
-    - APP_NAME=python-test-20feb
-    - secure: xKeqlTY/SuBmKPVdc9hoTqjMoUFJatwGefN7Pc5F2dcgCu+hsDsO8tfr6NJX9fExgoZZKhgicJhTGt57jy/e5/Ucvn2LEq6yEmzCUAt8HEMJ6ovWMwEjp8LKbor9N7pTMDRlPaiCzxqHRJfbti7FsC5kRwxIoimpIAQOG0ozFRNrY2QGgxFMn2j30DcZ2DZ+eUsJK2GntoFY/FZC+vkb/YWHhrsan8yYqP/vJqA05va7SKEGGvrULeWTQYDZxLUKczwWKkeoLuuTjOYl9BmQfDW/hY1mTkGoUJBsSCWw3kLXsrJFa8dQe5JAekAEFeWJbq21doEHXCWEXKqY2D+9dw==
-
+    
   matrix:
     - M1=ONE
 
@@ -32,21 +30,14 @@ build:
   ci:
     - ps -eax
     - ls -al
-    - which heroku || wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-    - . $HOME/.rvm/scripts/rvm && rvm use ruby-2.0.0-p598 --default && ruby --version
-
     - pip install -r requirements.txt
+    - if [[ $VIRTUALENV_PYTHON == '3.2' ]]; then pip install coverage==3.7.1 codecov ; fi
     - mkdir -p shippable/testresults
     - mkdir -p shippable/codecoverage
+    - python initialize.py
     - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
     - which python && coverage run --branch test.py
     - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
-    
-    - test -f ~/.ssh/id_rsa.heroku || ssh-keygen -y -f /tmp/ssh/sub > ~/.ssh/id_rsa.heroku && heroku keys:add ~/.ssh/id_rsa.heroku
-    - git remote -v | grep ^heroku || heroku git:remote --ssh-git --app $APP_NAME
-    - git push -f heroku $BRANCH:master
-   # - psql -c 'create database test;' -U postgres
-   # - mysql -e 'create database if not exists test;'
 
   #post_ci:
    # - docker build -t=shippabledocker/shiphitchcock1_sample_python:latest .
