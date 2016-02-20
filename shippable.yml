@@ -32,6 +32,9 @@ build:
     - ls -al
     - psql -c 'create database test;' -U postgres
    # - mysql -e 'create database if not exists test;'
+    - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
+    - which python && coverage run --branch test.py
+    - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
 
   #post_ci:
    # - docker build -t=shippabledocker/shiphitchcock1_sample_python:latest .
