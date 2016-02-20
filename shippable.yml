@@ -8,7 +8,7 @@ python:
   #- pypy3
   
 services:
-  - redis
+  - elasticsearch
 
 env:
   global:
