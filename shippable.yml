@@ -14,6 +14,7 @@ env:
   global:
     - FOO=FUBU
     - APP_NAME=python-test-20feb
+    - secure: xKeqlTY/SuBmKPVdc9hoTqjMoUFJatwGefN7Pc5F2dcgCu+hsDsO8tfr6NJX9fExgoZZKhgicJhTGt57jy/e5/Ucvn2LEq6yEmzCUAt8HEMJ6ovWMwEjp8LKbor9N7pTMDRlPaiCzxqHRJfbti7FsC5kRwxIoimpIAQOG0ozFRNrY2QGgxFMn2j30DcZ2DZ+eUsJK2GntoFY/FZC+vkb/YWHhrsan8yYqP/vJqA05va7SKEGGvrULeWTQYDZxLUKczwWKkeoLuuTjOYl9BmQfDW/hY1mTkGoUJBsSCWw3kLXsrJFa8dQe5JAekAEFeWJbq21doEHXCWEXKqY2D+9dw==
 
   matrix:
     - M1=ONE
