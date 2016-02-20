@@ -30,6 +30,7 @@ build:
   ci:
     - ps -eax
     - ls -al
+    - python sqliteSample.py
    # - psql -c 'create database test;' -U postgres
    # - mysql -e 'create database if not exists test;'
 
