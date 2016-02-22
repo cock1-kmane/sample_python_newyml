@@ -13,6 +13,9 @@ env:
 
   matrix:
     - M1=ONE
+    
+services:
+  - cassandra
 
 build:
   #pre_ci:
